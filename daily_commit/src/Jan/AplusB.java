@@ -1,4 +1,4 @@
-package backjun;
+package Jan;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
