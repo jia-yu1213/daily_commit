@@ -35,10 +35,10 @@ public class AplusB {
         }
 
         // 입력받은 두 변수를 더하여 결과를 계산합니다.
-        int 합계 = a + b;
+        int sum = a + b;
 
         // 결과를 출력합니다.
-        System.out.println("두 변수의 합계는: " + 합계);
+        System.out.println("두 변수의 합계는: " + sum);
 
         scanner.close();
     }
