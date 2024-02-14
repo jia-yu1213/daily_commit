@@ -3,10 +3,11 @@ package Feb;
 public class WalkingPark {
 
     public static void main(String[] args) {
-        String[] park = {"OSO","OOO","OXO","OOO"};
-        String[] routes = {"E 2","S 3","W 1"};
+        String[] park = {"SOO","OXX","OOO"};
+        String[] routes = {"E 2","S 2","W 1"};
 
-        solution(park, routes);
+        int[] answer = solution(park, routes);
+        System.out.println("answer = " + answer[0] + " " + answer[1]);
     }
 
     public static int[] solution(String[] park, String[] routes) {
@@ -36,25 +37,38 @@ public class WalkingPark {
             int tempWidth = widthPosition;
             int tempHeight = heightPosition;
 
-            if (direction.equals("E")){
-                tempWidth += move;
-            } else if (direction.equals("W")) {
-                tempWidth -= move;
-            } else if (direction.equals("S")) {
-                tempHeight += move;
-            } else {
-                tempHeight -= move;
+            for (int i = 1; i <= move; i++) {
+                if (direction.equals("E")){
+                    tempWidth += 1;
+                } else if (direction.equals("W")) {
+                    tempWidth -= 1;
+                } else if (direction.equals("S")) {
+                    tempHeight += 1;
+                } else {
+                    tempHeight -= 1;
+                }
+
+                if (tempHeight >= 0 && tempHeight < park.length
+                        && tempWidth >= 0 && tempWidth < park[0].length()){
+                    if (parkMap[tempHeight][tempWidth].equalsIgnoreCase("X")){
+                        tempWidth = widthPosition;
+                        tempHeight = heightPosition;
+                        break;
+                    }
+                }else{
+                    tempWidth = widthPosition;
+                    tempHeight = heightPosition;
+                    break;
+                }
+
             }
 
-            if (tempHeight >= 0 && tempHeight < park.length
-            && tempWidth >= 0 && tempWidth < park[0].length()){
-                widthPosition = tempWidth;
-                heightPosition = tempHeight;
-            }
+            widthPosition = tempWidth;
+            heightPosition = tempHeight;
 
         }
 
-
+        answer = new int[]{heightPosition, widthPosition};
         return answer;
     }
 }
