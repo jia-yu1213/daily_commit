@@ -3,9 +3,9 @@ package Feb;
 public class SecretCode {
 
     public static void main(String[] args) {
-        String s = "aukks";
-        String skip = "wbqd";
-        int index = 5;
+        String s = "yyyyy";
+        String skip = "za";
+        int index = 2;
         String answer = solution(s, skip, index);
         System.out.println("answer = " + answer);
     }
@@ -15,9 +15,10 @@ public class SecretCode {
 
         for (char x : s.toCharArray()){
             int count = 0;
-            while (count!=index){
+            while (count != index){
                 x += 1;
-                if (skip.indexOf(x) > 0){continue;}
+                if(x > 122) x -= 26;
+                if (skip.indexOf(x) >= 0){continue;}
                 count += 1;
             }
             answer += x;
