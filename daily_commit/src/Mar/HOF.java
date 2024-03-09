@@ -17,21 +17,11 @@ public class HOF {
 
         List<Integer> hof = new ArrayList<>();
         for (int i = 0; i < score.length; i++) {
-            if (i < k){
-                hof.add(score[i]);
-                Collections.sort(hof);
-            } else {
-                for (int j = hof.size()-1; j >= 0; j--) {
-                    if (score[i] > hof.get(j)){
-                        for (int l = 0; l < hof.size()-1; l++) {
-                            hof.set(l, hof.get(l+1));
-                        }
-                        hof.set(j,score[i]);
-                        break;
-                    }
-                }
+            hof.add(score[i]);
+            if (hof.size() > k){
+                hof.remove(Collections.min(hof));
             }
-            answer[i] = hof.get(0);
+            answer[i] = Collections.min(hof);
         }
         return answer;
     }
