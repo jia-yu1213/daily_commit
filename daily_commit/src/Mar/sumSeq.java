@@ -16,21 +16,30 @@ public class sumSeq {
     public static int[] solution(int[] sequence, int k) {
         int[] answer = {0 , 0};
 
-        
-        for (int i = 0; i < sequence.length; i++) {
-            int sum = 0;
-            for (int j = i; j < sequence.length; j++) {
+        int i = 0;
+        int j = 0;
+        int sum = 0;
+        int length = 9999999;
+        while (true){
+            if (sum == k){
+                if (length > (j-i)){
+                    length = j - i;
+                    answer = new int[]{i,j-1};
+                } else if (i == answer[0]) {
+                    sum -= sequence[i];
+                    i++;
+                } else {
+                    if (j >= sequence.length) break;
+                    sum += sequence[j];
+                    j++;
+                }
+            } else if (sum < k) {
+                if (j >= sequence.length) break;
                 sum += sequence[j];
-                if (sum == k){
-                    if ((answer[1] == 0) ||
-                       ((j - i) < (answer[1] - answer[0])) ||
-                       (((j - i) == (answer[1] - answer[0])) && i < answer[0])){
-                        answer = new int[]{i, j};
-                    }
-                }
-                if (sum > k){
-                    break;
-                }
+                j++;
+            } else {
+                sum -= sequence[i];
+                i++;
             }
         }
 
