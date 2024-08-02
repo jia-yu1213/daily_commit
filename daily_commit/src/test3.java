@@ -6,5 +6,7 @@ public class test3 {
         System.out.println("attach");
         System.out.println("merge 테스트");
 
+        System.out.println("test3.main");
+
     }
 }
